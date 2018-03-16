@@ -60,7 +60,7 @@ class Member(models.Model):
         return self.mem_name
         
 class ProductionPerPhase(models.Model):
-    Member=models.ForeignKey(Member,verbose_name="Enterprise")
+    member=models.ForeignKey(Member,verbose_name="Enterprise",null=True)
     year=models.IntegerField(verbose_name="year")
     phase=models.CharField(verbose_name="Phase", choices=[('1', 'Jan-Apr'),('2', 'May-Aug'),('3','Sep-Dec')],max_length=32)
     permanentmaleemployee = models.IntegerField(verbose_name = 'Permanent M. Emp',blank=False)
@@ -70,7 +70,8 @@ class ProductionPerPhase(models.Model):
     shoes=models.IntegerField(verbose_name="Shoes in Dozen",blank=True)
     price=models.FloatField(verbose_name="Price")
     
-
+    def __str__(self):
+        return self.member.mem_name + " (" + str(self.shoes) + ")"
 
 
         
